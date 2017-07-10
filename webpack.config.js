@@ -20,7 +20,7 @@ module.exports= {
     })
   ],
   resolve: {
-    modules: [__dirname, 'node_modules'],
+    modules: [__dirname, 'node_modules', path.resolve('./app/components')],
     alias:{
       applicationStyles:'app/styles/app.scss'
     },
