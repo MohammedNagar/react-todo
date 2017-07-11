@@ -20,9 +20,12 @@ module.exports= {
     })
   ],
   resolve: {
-    modules: [__dirname, 'node_modules', path.resolve('./app/components')],
+    modules: [__dirname, 'node_modules'],
     alias:{
-      applicationStyles:'app/styles/app.scss'
+      applicationStyles:'app/styles/app.scss',
+      TodoApp: 'app/components/TodoApp.jsx',
+      TodoList: 'app/components/TodoList.jsx',
+      Todo: 'app/components/Todo.jsx'
     },
     extensions: ['*','.js','.jsx;']
   },
