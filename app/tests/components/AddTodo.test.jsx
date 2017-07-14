@@ -18,7 +18,7 @@ describe('AddTodo',() => {
     var addTodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy}/>);
     var $el = $(ReactDOM.findDOMNode(addTodo));
     addTodo.refs.txtAdd.value =todoText;
-    TestUtils.Simulate.submit($el.find('form')[0]);
+    TestUtils.Simulate.submit(addTodo.refs.addForm);
 
     expect(spy).toHaveBeenCalledWith(todoText);
   });
