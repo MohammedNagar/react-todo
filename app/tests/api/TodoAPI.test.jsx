@@ -43,4 +43,49 @@ describe('TodoAPI', () => {
       expect(actualTodos).toEqual(todos);
     });
   });
+
+  describe('FilterTodos',() => {
+    var filteredTodos = [
+      {
+        id: 70,
+        text: 'Play a little',
+        completed: true
+      },
+      {
+        id: 71,
+        text: 'Eat so much',
+        completed: false
+      },
+      {
+        id: 70,
+        text: 'Drink a little',
+        completed: true
+      }
+    ]
+    it('Should return all items if showCompleted is true',() => {
+       var filtered = TodoAPI.filterTodos(filteredTodos,true,'');
+       expect(filtered.length).toBe(3);
+    });
+
+    it('Should return only non completed if showCompleted is false',() => {
+       var filtered = TodoAPI.filterTodos(filteredTodos,false,'');
+       expect(filtered.length).toBe(1);
+    });
+
+    it('Should sort by completed status',() => {
+      var filtered = TodoAPI.filterTodos(filteredTodos,true,'');
+      expect(filtered[0].completed).toBe(false);
+    });
+
+    it('Should filter Todos by searchText',() => {
+       var filtered = TodoAPI.filterTodos(filteredTodos,true,'little');
+       expect(filtered.length).toBe(2);
+    });
+
+    it('Should return all items if searchText is empty',() => {
+       var filtered = TodoAPI.filterTodos(filteredTodos,true,'');
+       expect(filtered.length).toBe(3);
+    });
+
+  });
 });
