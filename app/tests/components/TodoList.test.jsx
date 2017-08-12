@@ -29,4 +29,12 @@ describe('TodoList',()=> {
 
     expect(todosComponents.length).toBe(todos.length);
   });
+
+  it('Should render empty message if no todos',() => {
+
+    var todos = [];
+
+    var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
+    expect(todoList.refs.emptyPhara).toExist();
+  });
 });
