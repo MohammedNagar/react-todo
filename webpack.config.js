@@ -20,7 +20,12 @@ module.exports= {
     })
   ],
   resolve: {
-    modules: [__dirname, 'node_modules', 'app/components', 'app/api', 'app/actions'],
+    modules: [__dirname,
+       'node_modules',
+       'app/components',
+        'app/api',
+        'app/actions',
+         'app/reducers'],
     alias:{
       applicationStyles:'app/styles/app.scss'
 
