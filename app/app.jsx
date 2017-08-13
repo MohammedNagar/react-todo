@@ -11,9 +11,7 @@ store.subscribe(() => {
   console.log('CurrentState: ',store.getState());
 });
 
-store.dispatch(actions.addTodo('Play a game...'));
-store.dispatch(actions.setSearchText('game'));
-store.dispatch(actions.toggleShowCompleted());
+
 //Load foundation
 $(document).foundation();
 
