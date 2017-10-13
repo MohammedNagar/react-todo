@@ -23,7 +23,7 @@ render: function(){
   return(
     <div className ={todoClassName} ref ="todoDiv" onClick = {() => {
         // this.props.onToggle(id);
-        dispatch(actions.toggleTodo(id));
+        dispatch(actions.startToggleTodo(id,!completed));
       }}>
       <div>
             <input type ="checkbox" checked ={completed}/>
