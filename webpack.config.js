@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 module.exports= {
   entry:[ 'babel-polyfill',
   'script-loader!jquery/dist/jquery.min.js',
@@ -17,6 +18,11 @@ module.exports= {
     new webpack.ProvidePlugin({
       '$':'jquery',
       'jQuery':'jquery'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor :{
+        warnings: false
+      }
     })
   ],
   resolve: {
@@ -58,5 +64,5 @@ module.exports= {
       ]
     },
 
-  devtool: 'cheap-module-eval-source-map'
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
 };
