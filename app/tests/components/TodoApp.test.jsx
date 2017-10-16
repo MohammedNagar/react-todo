@@ -5,7 +5,7 @@ var {Provider} = require('react-redux');
 var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils');
 
-var TodoApp = require('TodoApp');
+import {TodoApp} from 'TodoApp';
 import TodoList from 'TodoList';
 var store = require('configureStore').configure();
 
