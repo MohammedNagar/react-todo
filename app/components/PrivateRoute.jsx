@@ -3,23 +3,29 @@ import { Redirect, Route } from 'react-router-dom'
 import firebase from 'app/firebase/';
 import TodoApp from 'TodoApp';
 import Login from 'Login';
-const PrivateRoute = ({ component: Component, ...rest }) => {
+import * as actions from 'actions';
+import * as Redux from 'react-redux';
+export var PrivateRoute = ({ component: Component, ...rest }) => {
+  var {dispatch} = this.props;
+  // return the Route component
+  return <Route {...rest} render={props => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        console.log('ON...ON');
+        // run dispatch
+        dispatch(actions.login(user.uid));
+        // return component
+        return <Component  {...props} />
 
-  <Route {...rest} render={props => (
-      firebase.auth().onAuthStateChanged((user) => user
-      ?(
-        <Component  {...props}/>
-      )
-      :(
-        <Redirect to={{
-            pathname: '/login',
-            state: { from: props.location }
-          }}/>
-        )
-      )
-    )}/>
+      } else {
+        console.log('OFF...OFF');
+        // run dispatch
+        dispatch(actions.logout());
+        // return component
+        return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
 
-
-  }
-
-  export default PrivateRoute
+      }
+    });
+  }} />
+}
+export default Redux.connect()(PrivateRoute);

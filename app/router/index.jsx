@@ -27,7 +27,7 @@ export default (
       <div>
         <div className="columns medium-6 large-4 small-centered">
           <Switch>
-            <PrivateRoute path='/todos' component={TodoApp} onEnter ={requireLogin}/>
+            <PrivateRoute path='/todos' component={TodoApp}/>
             <Route path='/login' component={Login}/>
             <Route component={Login}  onEnter ={redirectIfLoggedIn}/>
           </Switch>
