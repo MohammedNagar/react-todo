@@ -7,8 +7,6 @@ var store = require('configureStore').configure();
 import router from 'app/router/';
 
 
-store.dispatch(actions.startAddTodos());
-
 //Load foundation
 $(document).foundation();
 

@@ -6,26 +6,35 @@ import Login from 'Login';
 import * as actions from 'actions';
 import * as Redux from 'react-redux';
 export var PrivateRoute = ({ component: Component, ...rest }) => {
-  var {dispatch} = this.props;
+
   // return the Route component
-  return <Route {...rest} render={props => {
+  return (
+    <div>
+    <Route {...rest} render={props => {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
         console.log('ON...ON');
         // run dispatch
+        var {dispatch} = props;
         dispatch(actions.login(user.uid));
+        dispatch(actions.startAddTodos());
         // return component
-        return <Component  {...props} />
+        return(
+          <Component  {...props} />
+        ) ;
 
       } else {
         console.log('OFF...OFF');
         // run dispatch
         dispatch(actions.logout());
         // return component
-        return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+        return (
+          <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+        );
 
       }
     });
   }} />
+</div>);
 }
 export default Redux.connect()(PrivateRoute);
