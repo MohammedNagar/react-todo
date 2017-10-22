@@ -18,6 +18,10 @@ module.exports = function (config) {
         timeout: '5000'
       }
     },
+    browserConsoleLogOptions: {
+      terminal: true,
+      level: "log"
+    },
     webpack: webpackConfig,
     webpackServer: {
       noInfo: true

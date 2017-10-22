@@ -9,7 +9,6 @@ export var PrivateRoute = ({ component: Component, ...rest }) => {
 
   // return the Route component
   return (
-    <div>
     <Route {...rest} render={props => {
     firebase.auth().onAuthStateChanged((user) => {
       if(user) {
@@ -34,7 +33,6 @@ export var PrivateRoute = ({ component: Component, ...rest }) => {
 
       }
     });
-  }} />
-</div>);
+  }} />);
 }
 export default Redux.connect()(PrivateRoute);

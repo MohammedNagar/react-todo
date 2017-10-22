@@ -37,48 +37,49 @@ module.exports= {
         API_KEY: JSON.stringify(process.env.API_KEY),
         AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
         DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
-        STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET)
+        STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET),
+        GITHUB_ACCESS_TOKEN: JSON.stringify(process.env.GITHUB_ACCESS_TOKEN)
       }
     })
   ],
   resolve: {
     modules: [__dirname,
-       'node_modules',
-       'app/components',
-        'app/api',
-        'app/actions',
-         'app/reducers',
-       'app/store'],
-    alias:{
-      app: 'app',
-      applicationStyles:'app/styles/app.scss'
+      'node_modules',
+      'app/components',
+      'app/api',
+      'app/actions',
+      'app/reducers',
+      'app/store'],
+      alias:{
+        app: 'app',
+        applicationStyles:'app/styles/app.scss'
 
-    },
-    extensions: ['*','.js','.jsx']
-  },
-  module :{
-    rules:[{
-      loader :'babel-loader',
-      query :{
-        presets:['react','es2015','es2017','stage-0'],
-        plugins: ['transform-runtime']
       },
-      test:/\.jsx?$/,
-      exclude:/(node_modules|bower_components)/
+      extensions: ['*','.js','.jsx']
     },
+    module :{
+      rules:[{
+        loader :'babel-loader',
+        query :{
+          presets:['react','es2015','es2017','stage-0'],
+          plugins: ['transform-runtime']
+        },
+        test:/\.jsx?$/,
+        exclude:/(node_modules|bower_components)/
+      },
 
-    {
-            test: /\.scss$/,
-            use: [
-                {
-                loader: "sass-loader",
-                options: {
-                    includePaths: ["./node_modules/foundation-sites/scss"]
-                }
-            }]
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "sass-loader",
+            options: {
+              includePaths: ["./node_modules/foundation-sites/scss"]
+            }
+          }]
         }
       ]
     },
 
-  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
-};
+    devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
+  };
